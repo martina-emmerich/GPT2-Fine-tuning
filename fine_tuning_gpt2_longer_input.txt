@@ -1,0 +1,171 @@
+DEVICE: cuda
+Commencing training!
+Arguments: {'data': 'austen_dataset_single_sents.pkl', 'batch_size': 8, 'max_input_length': 500, 'train_size': 0.9, 'max_output_length': 200, 'top_k': 50, 'top_p': 0.95, 'model': 'gpt2', 'warmup_steps': 100.0, 'sample_every': 943, 'epochs': 4, 'lr': 0.0005, 'eps': 1e-08, 'check_dir': 'Checkpoints', 'restore_file': None, 'save_interval': 1, 'load_checkpoint': False, 'output_dir': 'GPT2_fine_tuned_Austen'}
+Total length of data loaded 41906
+Number of samples for training = 37715
+Number of samples for validation = 4191
+Total training steps 18860.
+Loaded a base model from HuggingFace.
+Beginning epoch 1 of 4
+| Epoch 001:  11% 500/4715 [09:29<1:20:36,  1.15s/it] Step 500 of 4715. Loss: 0.20401211082935333. Time: 0:09:31
+| Epoch 001:  20% 943/4715 [17:58<1:12:16,  1.15s/it]Generating example output... at step 943 of epoch 1.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput: representAnd it was not the first time he had been employed, in spite of a great distance.
+
+
+| Epoch 001:  21% 1000/4715 [19:05<1:11:13,  1.15s/it] Step 1000 of 4715. Loss: 0.22113296389579773. Time: 0:19:07
+| Epoch 001:  32% 1500/4715 [28:39<1:01:29,  1.15s/it] Step 1500 of 4715. Loss: 0.2699643671512604. Time: 0:28:41
+| Epoch 001:  40% 1886/4715 [36:03<54:04,  1.15s/it]Generating example output... at step 1886 of epoch 1.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput: acingShe could not speak her concern over the children, for she knew it too well to doubt them; but she agreed with Miss Bennet's resolution that the two were the chief to suffer; for to their former neighbours the whole business was always better in general than in the common scheme of everything.
+
+
+| Epoch 001:  42% 2000/4715 [38:14<52:03,  1.15s/it] Step 2000 of 4715. Loss: 0.12333596497774124. Time: 0:38:16
+| Epoch 001:  53% 2500/4715 [47:49<42:21,  1.15s/it] Step 2500 of 4715. Loss: 0.1831866353750229. Time: 0:47:51
+| Epoch 001:  60% 2829/4715 [54:07<36:03,  1.15s/it]Generating example output... at step 2829 of epoch 1.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput:  pluginsI never heard of anybody making money so easily; and I am sure you are all very well satisfied, and as for my own own own, I am not sure I will ever have it.
+
+
+| Epoch 001:  64% 3000/4715 [57:24<32:50,  1.15s/it] Step 3000 of 4715. Loss: 0.22868914902210236. Time: 0:57:26
+| Epoch 001:  74% 3500/4715 [1:06:58<23:13,  1.15s/it] Step 3500 of 4715. Loss: 0.24489621818065643. Time: 1:07:00
+| Epoch 001:  80% 3772/4715 [1:12:10<18:00,  1.15s/it]Generating example output... at step 3772 of epoch 1.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput:  stimulation“Harriet and I do not want _you_ to be such a match,” said Emma, “because I have never seen an angel, or anyone who has been in a very intimate marriage.
+
+
+| Epoch 001:  85% 4000/4715 [1:16:32<13:40,  1.15s/it] Step 4000 of 4715. Loss: 0.22124908864498138. Time: 1:16:34
+| Epoch 001:  95% 4500/4715 [1:26:06<04:08,  1.16s/it] Step 4500 of 4715. Loss: 0.18309220671653748. Time: 1:26:07
+Average Training Loss: 0.23233709216339085. Epoch time: 1:30:14
+
+Validation loss: 0.20843952210293015. Validation Time: 0:03:17
+
+Saving model after 1 epochs.
+------------------------------
+Beginning epoch 2 of 4
+| Epoch 002:  11% 500/4715 [09:30<1:20:17,  1.14s/it] Step 500 of 4715. Loss: 0.17735154926776886. Time: 0:09:31
+| Epoch 002:  20% 943/4715 [17:56<1:11:46,  1.14s/it]Generating example output... at step 943 of epoch 2.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput: qualityAnd it was not my own fault, though you may pity me for it.
+
+
+| Epoch 002:  21% 1000/4715 [19:02<1:10:47,  1.14s/it] Step 1000 of 4715. Loss: 0.20447836816310883. Time: 0:19:03
+| Epoch 002:  32% 1500/4715 [28:34<1:01:21,  1.15s/it] Step 1500 of 4715. Loss: 0.24061040580272675. Time: 0:28:36
+| Epoch 002:  40% 1886/4715 [35:56<53:55,  1.14s/it]Generating example output... at step 1886 of epoch 2.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput: ___You will like your sister best for coming, I dare say, for she is always in my company, and she does not look forward to every new year.”
+
+
+| Epoch 002:  42% 2000/4715 [38:07<51:44,  1.14s/it] Step 2000 of 4715. Loss: 0.11039714515209198. Time: 0:38:08
+| Epoch 002:  53% 2500/4715 [47:39<42:10,  1.14s/it] Step 2500 of 4715. Loss: 0.17152093350887299. Time: 0:47:41
+| Epoch 002:  60% 2829/4715 [53:56<36:07,  1.15s/it]Generating example output... at step 2829 of epoch 2.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput:  HealingSir John Middleton is to call in Pulteney Street on Tuesday, the same day as Miss Dashwood's.
+
+
+| Epoch 002:  64% 3000/4715 [57:12<32:56,  1.15s/it] Step 3000 of 4715. Loss: 0.2135486751794815. Time: 0:57:14
+| Epoch 002:  74% 3500/4715 [1:06:45<23:15,  1.15s/it] Step 3500 of 4715. Loss: 0.2297978401184082. Time: 1:06:47
+| Epoch 002:  80% 3772/4715 [1:11:57<18:04,  1.15s/it]Generating example output... at step 3772 of epoch 2.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput: ,"I was to have been asked to dine here once or twice in the season.
+
+
+| Epoch 002:  85% 4000/4715 [1:16:19<13:40,  1.15s/it] Step 4000 of 4715. Loss: 0.20408053696155548. Time: 1:16:21
+| Epoch 002:  95% 4500/4715 [1:25:53<04:07,  1.15s/it] Step 4500 of 4715. Loss: 0.16539274156093597. Time: 1:25:55
+Average Training Loss: 0.1959803045167334. Epoch time: 1:30:01
+
+Validation loss: 0.20897711748043998. Validation Time: 0:03:17
+
+Saving model after 2 epochs.
+------------------------------
+Beginning epoch 3 of 4
+| Epoch 003:  11% 500/4715 [09:32<1:20:50,  1.15s/it] Step 500 of 4715. Loss: 0.14383772015571594. Time: 0:09:33
+| Epoch 003:  20% 943/4715 [18:01<1:12:12,  1.15s/it]Generating example output... at step 943 of epoch 3.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput:  MaAnd it was not without an effort, though the effort was difficult, though it was the effort.
+
+
+| Epoch 003:  21% 1000/4715 [19:07<1:11:15,  1.15s/it] Step 1000 of 4715. Loss: 0.17465010285377502. Time: 0:19:08
+| Epoch 003:  32% 1500/4715 [28:40<1:01:12,  1.14s/it] Step 1500 of 4715. Loss: 0.21755649149417877. Time: 0:28:42
+| Epoch 003:  40% 1886/4715 [36:02<53:52,  1.14s/it]Generating example output... at step 1886 of epoch 3.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput:  borrowShe had to look around her, when, for the sake of Mr. Darcy, she came back in her chaise; and seeing the others, in the meanwhile, at the door, and hearing Darcy's footsteps, she hurried in and out of the carriage, and when it was all gone, Elizabeth turned her eyes round the room.
+
+
+| Epoch 003:  42% 2000/4715 [38:13<51:54,  1.15s/it] Step 2000 of 4715. Loss: 0.10182112455368042. Time: 0:38:15
+| Epoch 003:  53% 2500/4715 [47:48<42:18,  1.15s/it] Step 2500 of 4715. Loss: 0.15221282839775085. Time: 0:47:49
+| Epoch 003:  60% 2829/4715 [54:05<36:08,  1.15s/it]Generating example output... at step 2829 of epoch 3.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput: usuallyMrs. Bennet was very well satisfied, and as Bingley was expected to be, she should not be disappointed, as it would be as if she had not had a mother's dinner to attend them.
+
+
+| Epoch 003:  64% 3000/4715 [57:22<32:48,  1.15s/it] Step 3000 of 4715. Loss: 0.17959757149219513. Time: 0:57:24
+| Epoch 003:  74% 3500/4715 [1:06:58<23:28,  1.16s/it] Step 3500 of 4715. Loss: 0.18985483050346375. Time: 1:07:00
+| Epoch 003:  80% 3772/4715 [1:12:12<18:07,  1.15s/it]Generating example output... at step 3772 of epoch 3.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput:  wrapper“I am glad you are well.
+
+
+| Epoch 003:  85% 4000/4715 [1:16:36<13:47,  1.16s/it] Step 4000 of 4715. Loss: 0.16449666023254395. Time: 1:16:38
+| Epoch 003:  95% 4500/4715 [1:26:15<04:07,  1.15s/it] Step 4500 of 4715. Loss: 0.13473708927631378. Time: 1:26:16
+Average Training Loss: 0.16597838174800605. Epoch time: 1:30:24
+
+Validation loss: 0.2138898566450554. Validation Time: 0:03:16
+
+Saving model after 3 epochs.
+------------------------------
+Beginning epoch 4 of 4
+| Epoch 004:  11% 500/4715 [09:37<1:21:54,  1.17s/it] Step 500 of 4715. Loss: 0.09103412181138992. Time: 0:09:39
+| Epoch 004:  20% 943/4715 [18:11<1:13:00,  1.16s/it]Generating example output... at step 943 of epoch 4.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput:  cellphoneAnd it was not such an affecting, as you may suppose, as might be expected.
+
+
+| Epoch 004:  21% 1000/4715 [19:18<1:11:59,  1.16s/it] Step 1000 of 4715. Loss: 0.13751408457756042. Time: 0:19:20
+| Epoch 004:  32% 1500/4715 [28:59<1:02:15,  1.16s/it] Step 1500 of 4715. Loss: 0.17177842557430267. Time: 0:29:01
+| Epoch 004:  40% 1886/4715 [36:28<54:40,  1.16s/it]Generating example output... at step 1886 of epoch 4.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput:  reproductionYou will be too bountiful in all your jealousies for any bountiful sport, or any unmerited revenge, I dare say; but here the sport is aimed at, and I think you will not find anything in it for sport.”
+
+
+| Epoch 004:  42% 2000/4715 [38:41<52:33,  1.16s/it] Step 2000 of 4715. Loss: 0.0820859894156456. Time: 0:38:43
+| Epoch 004:  53% 2500/4715 [48:22<42:52,  1.16s/it] Step 2500 of 4715. Loss: 0.12485677748918533. Time: 0:48:24
+| Epoch 004:  60% 2829/4715 [54:44<36:33,  1.16s/it]Generating example output... at step 2829 of epoch 4.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput: gradation“I am excessively pleased to hear of your good nature, but I wish you would have gone to the concert.
+
+
+| Epoch 004:  64% 3000/4715 [58:03<33:08,  1.16s/it] Step 3000 of 4715. Loss: 0.15032494068145752. Time: 0:58:04
+| Epoch 004:  74% 3500/4715 [1:07:43<23:30,  1.16s/it] Step 3500 of 4715. Loss: 0.15524281561374664. Time: 1:07:45
+| Epoch 004:  80% 3772/4715 [1:13:00<18:16,  1.16s/it]Generating example output... at step 3772 of epoch 4.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:50256 for open-end generation.
+Example ouput: ノThe house belonged entirely to the Crown,--the Crown at the Crown.
+
+
+| Epoch 004:  85% 4000/4715 [1:17:26<13:51,  1.16s/it] Step 4000 of 4715. Loss: 0.1362946480512619. Time: 1:17:27
+| Epoch 004:  95% 4500/4715 [1:27:08<04:10,  1.16s/it] Step 4500 of 4715. Loss: 0.11763203889131546. Time: 1:27:09
+Average Training Loss: 0.13002630488933206. Epoch time: 1:31:18
+
+Validation loss: 0.2225074287617707. Validation Time: 0:03:16
+
+Saving model after 4 epochs.
+------------------------------
+Total training took 6:15:59
+[{'epoch': 1, 'Training Loss': 0.23233709216339085, 'Valid. Loss': 0.20843952210293015, 'Training Time': '1:30:14', 'Validation Time': '0:03:17', 'lr_scheduler': <torch.optim.lr_scheduler.LambdaLR object at 0x7847e3dde200>}, {'epoch': 2, 'Training Loss': 0.1959803045167334, 'Valid. Loss': 0.20897711748043998, 'Training Time': '1:30:01', 'Validation Time': '0:03:17', 'lr_scheduler': <torch.optim.lr_scheduler.LambdaLR object at 0x7847e3dde200>}, {'epoch': 3, 'Training Loss': 0.16597838174800605, 'Valid. Loss': 0.2138898566450554, 'Training Time': '1:30:24', 'Validation Time': '0:03:16', 'lr_scheduler': <torch.optim.lr_scheduler.LambdaLR object at 0x7847e3dde200>}, {'epoch': 4, 'Training Loss': 0.13002630488933206, 'Valid. Loss': 0.2225074287617707, 'Training Time': '1:31:18', 'Validation Time': '0:03:16', 'lr_scheduler': <torch.optim.lr_scheduler.LambdaLR object at 0x7847e3dde200>}]
+FINISHED TRAINING SUCCESSFULLY!
