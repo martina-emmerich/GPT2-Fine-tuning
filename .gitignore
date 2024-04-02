@@ -169,3 +169,4 @@ requirements2.txt
 *.zip
 testing_tokenizer.py
 bestmodel_run_long_input/
+*.pkl
