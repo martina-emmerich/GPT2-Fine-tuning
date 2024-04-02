@@ -170,3 +170,4 @@ requirements2.txt
 testing_tokenizer.py
 bestmodel_run_long_input/
 *.pkl
+output_logs/

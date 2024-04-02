@@ -37,34 +37,28 @@ def get_args():
     parser.add_argument('--max-input-length', default=100, type=int, help='maximum length of data input sequence' )
     parser.add_argument('--train-size', default=0.9, type=float, help='percentage of data for training split')
 
-    #Add model generation arguments for generation during evaluation
+    #Model generation arguments for generation during evaluation
     parser.add_argument('--max-output-length', default=200, help='maximum length of output sequence during evaluation' )
     parser.add_argument('--top-k', default=50, type=int, help='number of highest probability vocabulary tokens to keep for top-k-filtering')
     #only the set of tokens with proability that add up to top_p or higher are used for generation
     parser.add_argument('--top-p', default=0.95, type=float, help='probability threshold to select the set of tokens used for generation')
-    #parser.add_argument('--sampling', default=True, type=bool, help='whether or not to use sampling, if set to false uses greedy decoding') #we always wantit true otherwise passing topk and topp will generate an error
-    # do sample? whether or not to do sampling, in huggingface generate i defaults to false but we want it to be true 
-    #bos token id (why is it random.randint(1, 30 000)? becaue we are passing the model a random prompt to generate out random smaple
-    #num_return_sequences should be always set to one in generate I suppose 
 
-    #Add model arguments 
+    #Model arguments 
     parser.add_argument('--model', default='gpt2', help='model name from HuggingFace')
     
-    #Add optimization arguments
+    #Optimization arguments
     parser.add_argument('--warmup-steps', default=1e2, type=float, help='number of warm up steps for learing rate scheduler')
     parser.add_argument('--sample-every', default=100, type=int, help='every number of steps after which a random sample is outputted')
     parser.add_argument('--epochs', default=4, type=int, help='train until specified epoch')
     parser.add_argument('--lr', default=5e-4, type=float, help='learning rate')
     parser.add_argument('--eps', default=1e-8, type=float, help='Adam’s epsilon for numerical stability')
 
-    #Add checkpoint arguments (to do)
-   # parser.add_argument('--log-file', default=None, help='path to save logs') #implement logging?
+    #Saving and loading checkpoint arguments
     parser.add_argument('--check-dir', default='Checkpoints', help='path to directory to save checkpoints')
     parser.add_argument('--restore-file', type=str, help='filename/directory name to load checkpoint') #change name this is not the right one
     parser.add_argument('--save-interval', type=int, default=1, help='save a checkpoint every N epochs')
-   # parser.add_argument('--epoch-checkpoints', action='store_true', help='store all epoch checkpoints')
     parser.add_argument('--load-checkpoint', default=False, type=bool, help='whether to load the model from checkpoint')
-    #parse arguments
+
 
     #Save model arguments
     parser.add_argument('--output-dir', default='GPT2_fine_tuned_Austen', help='path to save logs')
@@ -74,9 +68,11 @@ def get_args():
 
 
 def validate(val_dataset, model, args, epoch):
-    torch.manual_seed(64) #42
-    np.random.seed(64) #42
+    #Set all seeds to allow for reproducible runs
+    torch.manual_seed(64) 
+    np.random.seed(64) 
     torch.manual_seed(64)
+
     val_dataloader = DataLoader(val_dataset,
                             sampler=SequentialSampler(val_dataset),
                            batch_size=args.batch_size) 
