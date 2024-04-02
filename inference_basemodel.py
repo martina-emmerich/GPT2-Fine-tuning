@@ -15,7 +15,7 @@ model = model.to(DEVICE)
 
 #model.eval()
 
-prompt = "people are evil" #'what is ai?'
+prompt = "dancing on the balcony" #'what is ai?'
 
 generated = torch.tensor(tokenizer.encode(prompt)).unsqueeze(0)
 generated = generated.to(DEVICE)
