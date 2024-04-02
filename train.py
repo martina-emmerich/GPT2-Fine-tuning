@@ -144,6 +144,7 @@ def main(args):
         data=pickle.load(f)
         print('Total length of data loaded', len(data))
     dataset =  AustenDataset(data, tokenizer, max_length=args.max_input_length)
+    print('Number of input sequences after tokenization', len(dataset.input_ids), len(dataset))
     # Split data into train and validation sets
     train_size = int(args.train_size*len(dataset))
     val_size = len(dataset) - train_size
@@ -151,17 +152,11 @@ def main(args):
     train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
     print("Number of samples for training =", train_size)
     print("Number of samples for validation =", val_size)
-     #   return train_dataset, val_dataset
+    
 
-    #train_dataset, val_dataset = load_data()
     train_dataloader = DataLoader(train_dataset,
                               sampler=RandomSampler(train_dataset),
-                              batch_size=args.batch_size)
-
-   ### val_dataloader = DataLoader(val_dataset,
-                         ###   sampler=SequentialSampler(val_dataset),
-                         ###   batch_size=args.batch_size) 
-   
+                              batch_size=args.batch_size) 
 
     # Load model configuration, instance on GPU either from checkpoint or HUggingFace
     #Also set up optimizer and scheduler
