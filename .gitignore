@@ -167,3 +167,5 @@ bestmodel_run1/
 Checkpoints_test/
 requirements2.txt
 *.zip
+testing_tokenizer.py
+bestmodel_run_long_input/

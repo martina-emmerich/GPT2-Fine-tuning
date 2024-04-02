@@ -12,7 +12,7 @@ import argparse
 from tqdm import tqdm
 
 
-from transformers import GPT2Tokenizer, GPT2LMHeadModel, GPT2Config, AdamW, get_linear_schedule_with_warmup, set_seed
+from transformers import GPT2TokenizerFast, GPT2LMHeadModel, GPT2Config, AdamW, get_linear_schedule_with_warmup, set_seed
 
 import torch
 from torch.utils.tensorboard import SummaryWriter
@@ -133,7 +133,7 @@ def main(args):
     print('Arguments: {}'.format(vars(args)))
 
     #Load model tokenizer
-    tokenizer = GPT2Tokenizer.from_pretrained(args.model, 
+    tokenizer = GPT2TokenizerFast.from_pretrained(args.model, 
                                           bos_token='<|startoftext|>', 
                                           eos_token='<|endoftext|>', 
                                           pad_token='<|pad|>')
