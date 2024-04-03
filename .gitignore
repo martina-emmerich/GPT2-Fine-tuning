@@ -171,3 +171,4 @@ testing_tokenizer.py
 bestmodel_run_long_input/
 *.pkl
 output_logs/
+bestmodel_run_fasttokenizer_gpt2/

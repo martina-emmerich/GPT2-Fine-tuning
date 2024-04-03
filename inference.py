@@ -5,12 +5,16 @@ import torch
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print('DEVICE:', DEVICE)
 
-tokenizer = GPT2Tokenizer.from_pretrained('.\\bestmodel_run_long_input\Checkpoints_Epoch_2')#'gpt2', bos_token='<|startoftext|>', 
+#model = '.\\bestmodel_run_long_input\Checkpoints_Epoch_2'
+model = '.\\bestmodel_run_fasttokenizer_gpt2\Checkpoints_Epoch_3'
+
+
+tokenizer = GPT2Tokenizer.from_pretrained(model)#'gpt2', bos_token='<|startoftext|>', 
                                           #eos_token='<|endoftext|>', 
                                           #pad_token='<|pad|>')
 #tokenizer.pad_token = tokenizer.eos_token
-config = GPT2Config.from_pretrained('.\\bestmodel_run_long_input\Checkpoints_Epoch_2')#'.\\bestmodel_run1\Checkpoints_Epoch_2') #.\GPT2_fine_tuned_Austen_test_model') #"gpt2")
-model = GPT2LMHeadModel.from_pretrained('.\\bestmodel_run_long_input\Checkpoints_Epoch_2') #'.\\bestmodel_run1\Checkpoints_Epoch_2', config=config) #.\GPT2_fine_tuned_Austen_test_model', config=config) #"gpt2", config=config)
+config = GPT2Config.from_pretrained(model)#'.\\bestmodel_run1\Checkpoints_Epoch_2') #.\GPT2_fine_tuned_Austen_test_model') #"gpt2")
+model = GPT2LMHeadModel.from_pretrained(model, config=config) #'.\\bestmodel_run1\Checkpoints_Epoch_2', config=config) #.\GPT2_fine_tuned_Austen_test_model', config=config) #"gpt2", config=config)
 model = model.to(DEVICE)
 
 #model.eval()

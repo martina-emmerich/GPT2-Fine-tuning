@@ -11,6 +11,7 @@ def format_time(elapsed):
 
 def save_model(output_dir, model, tokenizer, args =None, optimizer = None, epoch=None, val_loss=None, lr_scheduler=None,checkpoint=False):
     os.makedirs(output_dir, exist_ok=True)
+    #save model state dictionary with all infomration needed to continue training from the checkpoint
     if checkpoint: 
         state_dict = {
         'epoch': epoch,
@@ -24,13 +25,12 @@ def save_model(output_dir, model, tokenizer, args =None, optimizer = None, epoch
         model.save_pretrained(output_dir)
         tokenizer.save_pretrained(output_dir)
     else:    
-        #model_to_save = model.module if hasattr(model, 'module') else model
-       # model_to_save.save_model(output_dir)
+        #save last model and tokenizer 
         model.save_pretrained(output_dir)
         tokenizer.save_pretrained(output_dir)
 
-def load_checkpoint(path, model, optimizer, scheduler): #check this works and change if I need it to work differentely
-    
+def load_checkpoint(path, model, optimizer, scheduler): 
+    #load checkpoint information and model to continue training 
     checkpoint = torch.load(path)
     model.load_state_dict(checkpoint['model'])
     optimizer.load_state_dict(checkpoint['optimizer'])
@@ -41,18 +41,28 @@ def load_checkpoint(path, model, optimizer, scheduler): #check this works and ch
     return checkpoint
 
 def load_basemodel(model_name, device, tokenizer):
+    #load base model from HuggingFace
     config = GPT2Config.from_pretrained(model_name)
     model = GPT2LMHeadModel.from_pretrained(model_name, config=config)
-    # Set model embedding length
+    #set model embedding length
     model.resize_token_embeddings(len(tokenizer))
 
-    # Running the model on GPU
+    #running the model on GPU
     model = model.to(device)
 
     return model
 
-def load_qloramodel(model_name, device, tokenizer, lora_config):
-     # Load 4-bit quantized model
+def print_trainable_parameters(model):
+    """
+    Prints the names of the trainable parameters in the model.
+    """
+   # params = torch.nn.ParameterList()
+    for name, param in model.named_parameters():
+        if param.requires_grad:
+            print(name)
+
+def load_qloramodel(model_name, device, tokenizer, args):
+    #load 4-bit quantized model
     model = GPT2LMHeadModel.from_pretrained(
         model_name,    
         device_map="auto",
@@ -62,16 +72,26 @@ def load_qloramodel(model_name, device, tokenizer, lora_config):
         bnb_4bit_quant_type="nf4",
     ),
     torch_dtype=torch.bfloat16)
-     # Set model embedding length
+     # set model embedding length
     model.resize_token_embeddings(len(tokenizer))
 
-    # Add LoRA adapters to model
+    # add LoRA adapters to model
     model = prepare_model_for_kbit_training(model)
     #for name, param in model.named_parameters():
      #   print(name)
     
+    lora_config = LoraConfig(
+                r=64, 
+                lora_alpha=16, 
+               # target_modules = ['c_proj'],
+                lora_dropout=0.1, 
+                bias="none", 
+                modules_to_save = ["lm_head", "embed_tokens"],        # needed because we added new tokens to tokenizer/model
+                task_type="CAUSAL_LM")
+    
     model = get_peft_model(model, lora_config)
     model.config.use_cache = False
     model.print_trainable_parameters()
+    print_trainable_parameters(model)
 
     return model
