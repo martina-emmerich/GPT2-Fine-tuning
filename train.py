@@ -196,13 +196,13 @@ def main(args):
     #load checkpoint if needed
     if args.load_checkpoint:
         print(f'Loading model, optimizer and scheduler from checkpoint, from following dir: {args.restore_file}')
-        path_to_checkpoint = os.path.join('.\\', args.check_dir, args.restore_file, 'state_dict')
+        path_to_checkpoint = os.path.join('.', args.check_dir, args.restore_file, 'state_dict')
 
         # load last checkpoint state dict  to get optimizer and epochs
         state_dict = utils.load_checkpoint(path_to_checkpoint, model, optimizer, scheduler)  
         last_epoch = state_dict['epoch'] 
 
-        print(f'Restarting training from {last_epoch+1}, with learning rate {scheduler}.')
+        print(f'Restarting training from {last_epoch+1}, with learning rate {scheduler._last_lr}.')
     else:
         print('Fine-tuning from base model')
         last_epoch = 0
@@ -240,9 +240,9 @@ def main(args):
             total_train_loss += batch_loss
 
             #print batch step, batch loss on training data, time elapsed and learning rate every 500 steps
-            if step != 0 and step % 500 == 0:
+            if step != 0 and step % 500 == 0: 
                 elapsed = utils.format_time(time.time()-t0)
-                print(f' Step {step} of {len(train_dataloader)}. Loss: {batch_loss}. Time: {elapsed}. Learning rate {scheduler}')
+                print(f' Step {step} of {len(train_dataloader)}. Loss: {batch_loss}. Time: {elapsed}. Learning rate {scheduler._last_lr}')
 
             # sample example output every x steps
             if step != 0 and step % args.sample_every == 0:

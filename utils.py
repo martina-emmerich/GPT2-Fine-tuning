@@ -83,7 +83,7 @@ def load_qloramodel(model_name, device, tokenizer, args):
     lora_config = LoraConfig(
                 r=64, 
                 lora_alpha=16, 
-               # target_modules = ['c_proj'],
+               # target_modules = ['c_proj', 'c_attn'],
                 lora_dropout=0.1, 
                 bias="none", 
                 modules_to_save = ["lm_head", "embed_tokens"],        # needed because we added new tokens to tokenizer/model
