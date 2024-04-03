@@ -1,7 +1,9 @@
 import datetime
 import torch
 import os
-from transformers import GPT2Tokenizer, GPT2LMHeadModel, GPT2Config
+from transformers import GPT2Tokenizer, GPT2LMHeadModel, GPT2Config, BitsAndBytesConfig
+
+from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
 
 
 def format_time(elapsed):
@@ -48,3 +50,34 @@ def load_basemodel(model_name, device, tokenizer):
     model = model.to(device)
 
     return model
+
+def load_qloramodel(model_name, device, tokenizer):
+     # Load 4-bit quantized model
+    model = GPT2LMHeadModel.from_pretrained(
+        model_name,    
+        device_map="auto",
+        quantization_config=BitsAndBytesConfig(
+        load_in_4bit=True,
+        bnb_4bit_compute_dtype=torch.bfloat16,
+        bnb_4bit_quant_type="nf4",
+    ),
+    torch_dtype=torch.bfloat16)
+     # Set model embedding length
+    model.resize_token_embeddings(len(tokenizer))
+
+    # Running the model on GPU
+    model = model.to(device)
+    # Add LoRA adapters to model
+    model = prepare_model_for_kbit_training(model)
+    config = LoraConfig(
+    r=64, 
+    lora_alpha=16, 
+    target_modules = ['q_proj', 'k_proj', 'down_proj', 'v_proj', 'gate_proj', 'o_proj', 'up_proj'],
+    lora_dropout=0.1, 
+    bias="none", 
+    modules_to_save = ["lm_head", "embed_tokens"],        # needed because we added new tokens to tokenizer/model
+    task_type="CAUSAL_LM"
+    )
+    model = get_peft_model(model, config)
+    model.config.use_cache = False
+    model.print_trainable_parameters()
