@@ -51,7 +51,7 @@ def load_basemodel(model_name, device, tokenizer):
 
     return model
 
-def load_qloramodel(model_name, device, tokenizer):
+def load_qloramodel(model_name, device, tokenizer, lora_config):
      # Load 4-bit quantized model
     model = GPT2LMHeadModel.from_pretrained(
         model_name,    
@@ -65,19 +65,13 @@ def load_qloramodel(model_name, device, tokenizer):
      # Set model embedding length
     model.resize_token_embeddings(len(tokenizer))
 
-    # Running the model on GPU
-    model = model.to(device)
     # Add LoRA adapters to model
     model = prepare_model_for_kbit_training(model)
-    config = LoraConfig(
-    r=64, 
-    lora_alpha=16, 
-    target_modules = ['q_proj', 'k_proj', 'down_proj', 'v_proj', 'gate_proj', 'o_proj', 'up_proj'],
-    lora_dropout=0.1, 
-    bias="none", 
-    modules_to_save = ["lm_head", "embed_tokens"],        # needed because we added new tokens to tokenizer/model
-    task_type="CAUSAL_LM"
-    )
-    model = get_peft_model(model, config)
+    #for name, param in model.named_parameters():
+     #   print(name)
+    
+    model = get_peft_model(model, lora_config)
     model.config.use_cache = False
     model.print_trainable_parameters()
+
+    return model

@@ -12,7 +12,9 @@ import argparse
 from tqdm import tqdm
 
 
-from transformers import GPT2TokenizerFast, GPT2LMHeadModel, GPT2Config, AdamW, get_linear_schedule_with_warmup, set_seed,  BitsAndBytesConfig,
+from transformers import GPT2TokenizerFast, GPT2LMHeadModel, GPT2Config, AdamW, get_linear_schedule_with_warmup, set_seed,  BitsAndBytesConfig
+
+from peft import LoraConfig
 
 import torch
 from torch.utils.tensorboard import SummaryWriter
@@ -47,6 +49,14 @@ def get_args():
     parser.add_argument('--model', default='gpt2', help='model name from HuggingFace')
     parser.add_argument('--qlora', default=False, help='training using QLORA peft method instead of full fine-tuning')
     
+    #QLORA config arguments
+    #parser.add_arguments()
+    #lora bias
+    #lora rank r
+    #lora alpha
+    #lora dropout
+    #lora target modules
+
     #Optimization arguments
     parser.add_argument('--warmup-steps', default=1e2, type=float, help='number of warm up steps for learing rate scheduler')
     parser.add_argument('--sample-every', default=100, type=int, help='every number of steps after which a random sample is outputted')
@@ -160,7 +170,17 @@ def main(args):
 
     #Load base model
     if args.qlora:
-    
+        print(f'Loading {args.model} quantized and with lora adapaters.')
+        lora_config = LoraConfig(
+                r=64, 
+                lora_alpha=16, 
+               # target_modules = ['q_proj', 'k_proj', 'v_proj', 'gate_proj', 'o_proj', 'up_proj', 'down_proj'],  #'down_proj'
+                lora_dropout=0.1, 
+                bias="none", 
+                modules_to_save = ["lm_head", "embed_tokens"],        # needed because we added new tokens to tokenizer/model
+                task_type="CAUSAL_LM"
+    )
+        model = utils.load_qloramodel(args.model, DEVICE, tokenizer, lora_config)
     else:
         model = utils.load_basemodel(args.model, DEVICE, tokenizer)
 
@@ -198,7 +218,7 @@ def main(args):
        # scheduler = state_dict['lr_scheduler']
         print(f'Restarting training from {last_epoch+1}, with learning rate {scheduler}.')
     else:
-        print('Loaded a base model from HuggingFace.')
+        print('Fine-tuning from base model')
         #model = utils.load_basemodel(args.model, DEVICE, tokenizer)
         #Scheduling Optimizer
         # Using AdamW optimizer with default parameters
