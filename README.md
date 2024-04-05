@@ -4,18 +4,19 @@ Fine-tuning GPT2 model on HuggingFace to change its writing style. Used Jane Asu
 
 Model output samples after fine-tuning on the Jane Austen dataset:
 Generation settings used for both models: 
-                                ``` 
+                                ```
+                                model.generate( 
                                 do_sample=True,   
                                 top_k=50, 
                                 max_length = 300, #300
                                 top_p=0.95, #0.95 
-                                num_return_sequences=3
+                                num_return_sequences=3)
                                  ```
 
 Prompt: ***'dancing on the balcony'***
 
 ### Gpt2: 
-example 1: dancing on the balcony on the way home from work.
+***example:*** dancing on the balcony on the way home from work.
 
 "We had gotten our groceries together and it was just like, 'Well, it's time to go outside!' And that's kind of how I saw it when I got up to leave," she said.
 
@@ -48,7 +49,7 @@ The victim was later arrested in connection with the shooting.
 Mr DeSoto, who is a teacher, said he believes it was only a matter of time before anyone found him.
 
 ### Fine-tuned gpt2:
-example 1:  dancing on the balcony and the house; and though she was too good-humoured to admire Edward, she found herself soon in the midst of his behaviour on hearing this declaration, for though his behaviour to Miss Fairfax, as well as to Mrs. Grant, had been so well concealed before, the whole affair seemed all but forgotten in his coming home. They were sitting near the fire, and she began to suspect the consciousness of a violent passion; and as this was quite evident, in thinking of Edward's meaning it in the same quarter, she made up her mind to what had passed. There was a general feeling of ungraciousness on Edward's side, which did not necessarily follow from the same origin or explanation;
+***example:***  dancing on the balcony and the house; and though she was too good-humoured to admire Edward, she found herself soon in the midst of his behaviour on hearing this declaration, for though his behaviour to Miss Fairfax, as well as to Mrs. Grant, had been so well concealed before, the whole affair seemed all but forgotten in his coming home. They were sitting near the fire, and she began to suspect the consciousness of a violent passion; and as this was quite evident, in thinking of Edward's meaning it in the same quarter, she made up her mind to what had passed. There was a general feeling of ungraciousness on Edward's side, which did not necessarily follow from the same origin or explanation;
 but from his own account she was convinced that he had not. Her friend had asked her a good many questions, and had spoken of Edward's father's opinion of all the evils it could
 be supposed to cause, but only by a good-humoured assurance of her own good opinion of Edward and his mother's kindness.
 
@@ -56,9 +57,20 @@ example 2:  dancing on the balcony, and leaning against an old bench, when the s
 All optional arguments to pass to the script and default values:
 {'data': 'austen_dataset.pkl', 'batch_size': 8, 'max_input_length': 100, 'train_size': 0.9, 'max_output_length': 200, 'top_k': 50, 'top_p': 0.95, 'model': 'gpt2', 'warmup_steps': 100.0, 'sample_every': 100, 'epochs': 4, 'lr': 0.0005, 'eps': 1e-08, 'check_dir': 'Checkpoints', 'restore_file': None, 'save_interval': 1, 'load_checkpoint': False, 'output_dir': 'GPT2_fine_tuned_Austen'}
 
-Examples of running the script: ``` python train.py --sample-every 709 --max-input-length 500 ```
+## Installation 
+At least a 16GB GPU is recommended especially for fine-tuning bigger models like GPT-2 medium.
 
-To load a checkpoint and continue training run: ``` python train.py --restore-file Epoch_2 --load-checkpoint True ```
+``` pip install -r requirements.txt ```
 
-To fine-tune a model using qlora: ``` python train.py --sample-every 709 --max-input-length 500 --qlora True --model 'gpt2-medium' ```
-Commamnd line arguments for QLORA paramters will be added shortly.
+## Running fine-tuning 
+To run the basic script with the default options (fine-tuning GPT-2 without using QLoRA) use the following command replacing the data field with your data filename:
+
+ ``` python train.py --data 'austen_dataset.pkl ```
+
+To load a checkpoint and continue training run: 
+
+``` python train.py --restore-file Epoch_2 --load-checkpoint True ```
+
+To fine-tune a model (in this case GPT-2 medium) using QLoRA: 
+``` python train.py --sample-every 709 --max-input-length 500 --qlora True --model 'gpt2-medium' ```
+Commamnd line arguments for QLORA parameters will be added shortly.
