@@ -15,7 +15,7 @@ Generation settings used for both models:
 
 Prompt: ***'dancing on the balcony'***
 
-### Gpt2: 
+### GPT-2: 
 ***example 1:*** dancing on the balcony on the way home from work.
 
 "We had gotten our groceries together and it was just like, 'Well, it's time to go outside!' And that's kind of how I saw it when I got up to leave," she said.
@@ -48,7 +48,7 @@ The victim was later arrested in connection with the shooting.
 
 Mr DeSoto, who is a teacher, said he believes it was only a matter of time before anyone found him.
 
-### Fine-tuned gpt2:
+### Fine-tuned GPT-2 without QLoRA:
 ***example 1:***  dancing on the balcony and the house; and though she was too good-humoured to admire Edward, she found herself soon in the midst of his behaviour on hearing this declaration, for though his behaviour to Miss Fairfax, as well as to Mrs. Grant, had been so well concealed before, the whole affair seemed all but forgotten in his coming home. They were sitting near the fire, and she began to suspect the consciousness of a violent passion; and as this was quite evident, in thinking of Edward's meaning it in the same quarter, she made up her mind to what had passed. There was a general feeling of ungraciousness on Edward's side, which did not necessarily follow from the same origin or explanation;
 but from his own account she was convinced that he had not. Her friend had asked her a good many questions, and had spoken of Edward's father's opinion of all the evils it could
 be supposed to cause, but only by a good-humoured assurance of her own good opinion of Edward and his mother's kindness.
