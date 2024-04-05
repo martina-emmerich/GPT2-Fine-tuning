@@ -1,6 +1,6 @@
 # GPT2-Fine-tuning
 
-Fine-tuning GPT2 model on HuggingFace to change its writing style. Used Jane Asuten dataset from Kaggle: https://www.kaggle.com/datasets/joshmcadams/jane-austin-and-charles-dickens 
+Fine-tuning GPT-2 model on HuggingFace to change its writing style. Used Jane Asuten dataset from Kaggle: https://www.kaggle.com/datasets/joshmcadams/jane-austin-and-charles-dickens 
 
 Model output samples after fine-tuning on the Jane Austen dataset:
 Generation settings used for both models: 
