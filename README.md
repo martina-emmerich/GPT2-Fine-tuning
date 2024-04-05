@@ -72,6 +72,8 @@ To load a checkpoint and continue training run:
 
 ``` python train.py --restore-file Epoch_2 --load-checkpoint True ```
 
-To fine-tune a model (in this case GPT-2 medium) using QLoRA: 
+To fine-tune a model (in this case GPT-2 medium) using QLoRA:
+
 ``` python train.py --sample-every 709 --max-input-length 500 --qlora True --model 'gpt2-medium' ```
+
 Commamnd line arguments for QLORA parameters will be added shortly.
