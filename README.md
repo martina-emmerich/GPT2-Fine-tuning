@@ -76,4 +76,4 @@ To fine-tune a model (in this case GPT-2 medium) using QLoRA:
 
 ``` python train.py --sample-every 709 --max-input-length 500 --qlora True --model 'gpt2-medium' ```
 
-Commamnd line arguments for QLORA parameters will be added shortly.
+Commamnd line arguments for QLoRA parameters will be added shortly as well as the inference script for a model trained using QLoRA.

@@ -4,7 +4,7 @@ import torch
 
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print('DEVICE:', DEVICE)
-model = 'gpt2'
+model = 'gpt2-medium'
 
 tokenizer = GPT2Tokenizer.from_pretrained(model) 
 tokenizer.pad_token = tokenizer.eos_token
@@ -12,6 +12,9 @@ tokenizer.pad_token = tokenizer.eos_token
 config = GPT2Config.from_pretrained(model)
 model = GPT2LMHeadModel.from_pretrained(model, config=config)
 model = model.to(DEVICE)
+
+tot_params = sum(p.numel() for p in model.parameters())
+print(f'Model with {tot_params:,} number of parameters')
 
 prompt = "in the garden" # dancing on the balcony
 
