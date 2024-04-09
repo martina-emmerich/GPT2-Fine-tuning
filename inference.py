@@ -15,6 +15,9 @@ config = GPT2Config.from_pretrained(model)
 model = GPT2LMHeadModel.from_pretrained(model, config=config)
 model = model.to(DEVICE)
 
+#print(model.num_parameters())
+#print(model)
+
 prompt = "<|startoftext|> in the garden" #  dancing on the balcony
 
 generated = torch.tensor(tokenizer.encode(prompt)).unsqueeze(0)
