@@ -56,7 +56,7 @@ be supposed to cause, but only by a good-humoured assurance of her own good opin
 ***example 2:***  dancing on the balcony, and leaning against an old bench, when the sound of a gentleman approaching her, or at intervals approaching her, was very distinct, she found herself perfectly equal to the gentleman, who had just passed through the house, and at length approached her.  A few moments were enough for the lady in question, who was still only on the step, who saw the gentlemen entering, to say:
 
 ### All optional arguments to pass to the script and default values:
-{'data': 'austen_dataset.pkl', 'batch_size': 8, 'max_input_length': 100, 'train_size': 0.9, 'max_output_length': 200, 'top_k': 50, 'top_p': 0.95, 'model': 'gpt2', 'warmup_steps': 100.0, 'sample_every': 100, 'epochs': 4, 'lr': 0.0005, 'eps': 1e-08, 'check_dir': 'Checkpoints', 'restore_file': None, 'save_interval': 1, 'load_checkpoint': False, 'output_dir': 'GPT2_fine_tuned_Austen'}
+ {'data': 'austen_dataset_long.pkl', 'batch_size': 8, 'max_input_length': 500, 'train_size': 0.9, 'max_output_length': 200, 'top_k': 50, 'top_p': 0.95, 'model': 'gpt2-medium', 'qlora': True, 'rank_lora': 64, 'alpha_lora': 16, 'targets_lora': ['c_attn'], 'warmup_steps': 100.0, 'sample_every': 709, 'epochs': 4, 'lr': 0.0005, 'eps': 1e-08, 'check_dir': 'Checkpoints', 'restore_file': None, 'save_interval': 1, 'load_checkpoint': False, 'output_dir': 'GPT2_fine_tuned_Austen'}
 
 ## Installation 
 At least a 16GB GPU is recommended especially for fine-tuning bigger models like GPT-2 medium.
@@ -76,4 +76,6 @@ To fine-tune a model (in this case GPT-2 medium) using QLoRA:
 
 ``` python train.py --sample-every 709 --max-input-length 500 --qlora True --model 'gpt2-medium' ```
 
-Commamnd line arguments for QLoRA parameters will be added shortly as well as the inference script for a model trained using QLoRA.
+LoRA parameters can be changed using the following flags:
+
+ ``` --rank_lora int, --alpha_lora int , --targets_lora 'c_attn'  'c_proj' ```
