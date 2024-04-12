@@ -50,12 +50,9 @@ def get_args():
     parser.add_argument('--qlora', default=False, type=bool, help='training using QLORA peft method instead of full fine-tuning')
     
     #QLORA config arguments
-    #parser.add_arguments()
-    #lora bias
-    #lora rank r
-    #lora alpha
-    #lora dropout
-    #lora target modules
+    parser.add_argument('--rank_lora', default=64, type=int, help='rank of lo rank matrices in LORA')
+    parser.add_argument('--alpha_lora', default=16, type=int, help='alpha scaling parameter in LORA')
+    parser.add_argument('--targets_lora', default ='c_attn', type=str, nargs='+', help='list of modules to apply adapters to for LORA')
 
     #Optimization arguments
     parser.add_argument('--warmup-steps', default=1e2, type=float, help='number of warm up steps for learing rate scheduler')
@@ -130,6 +127,8 @@ def main(args):
     """
 
     print('Commencing training!')
+    #set all seeds
+    random.seed(64)
     torch.manual_seed(64) #42
     np.random.seed(64) #42
     torch.cuda.manual_seed(64)
@@ -172,7 +171,7 @@ def main(args):
     #load base model or base model with qlora adapters
     if args.qlora:
         print(f'Loading {args.model} quantized and with lora adapaters.')
-        model = utils.load_qloramodel(args.model, DEVICE, tokenizer, args)
+        model = utils.load_qloramodel(args.model, tokenizer, args)
     else:
         print(f'Training all model parameters for model {args.model}')
         model = utils.load_basemodel(args.model, DEVICE, tokenizer)
@@ -270,6 +269,8 @@ def main(args):
             loss.backward()
             optimizer.step()
             scheduler.step()
+    
+
         
         avg_train_loss = total_train_loss / len(train_dataloader)
         training_time = utils.format_time(time.time()-t0)

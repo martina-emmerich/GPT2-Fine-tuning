@@ -61,7 +61,7 @@ def print_trainable_parameters(model):
         if param.requires_grad:
             print(name)
 
-def load_qloramodel(model_name, device, tokenizer, args):
+def load_qloramodel(model_name, tokenizer, args):
     #load 4-bit quantized model
     model = GPT2LMHeadModel.from_pretrained(
         model_name,    
@@ -81,9 +81,9 @@ def load_qloramodel(model_name, device, tokenizer, args):
      #   print(name)
     
     lora_config = LoraConfig(
-                r=64, 
-                lora_alpha=16, 
-               # target_modules = ['c_proj', 'c_attn'],
+                r=args.rank_lora, 
+                lora_alpha=args.alpha_lora, 
+                target_modules = args.targets_lora, #, ['c_proj', c_attn'],
                 lora_dropout=0.1, 
                 bias="none", 
                 modules_to_save = ["lm_head", "embed_tokens"],        # needed because we added new tokens to tokenizer/model
