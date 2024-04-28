@@ -41,6 +41,9 @@ def load_checkpoint(path, model, optimizer, scheduler):
     return checkpoint
 
 def load_basemodel(model_name, device, tokenizer):
+
+    
+
     #load base model from HuggingFace
     config = GPT2Config.from_pretrained(model_name)
     model = GPT2LMHeadModel.from_pretrained(model_name, config=config)
@@ -49,6 +52,10 @@ def load_basemodel(model_name, device, tokenizer):
 
     #running the model on GPU
     model = model.to(device)
+    
+    #print('Model size in bytes:', get_model_size(model))
+    print('Model size in MB including buffers:', get_model_size(model)/1e+6)
+    print('Model size in GB including buffers:', get_model_size(model)/1e+9)
 
     return model
 
@@ -61,7 +68,29 @@ def print_trainable_parameters(model):
         if param.requires_grad:
             print(name)
 
+def get_model_size(model):
+    """
+    Get the the size of the model
+    """
+    mem_params = sum([param.nelement()*param.element_size() for param in model.parameters()]) #calculate memory usage of model parameters
+    mem_bufs = sum([buf.nelement()*buf.element_size() for buf in model.buffers()]) #calculate memory usage of model buffers
+
+    size_all = mem_params + mem_bufs
+
+    return size_all  
+
+def print_param_dtype(model):
+    """
+    Print model parameters data type 
+    """
+    for name, param in model.named_parameters():
+        print(f"{name} is loaded in {param.dtype}")
+
 def load_qloramodel(model_name, tokenizer, args):
+    """
+    Load model as quantized and set it up for LoRa fine-tuning
+    """
+
     #load 4-bit quantized model
     model = GPT2LMHeadModel.from_pretrained(
         model_name,    
@@ -72,13 +101,12 @@ def load_qloramodel(model_name, tokenizer, args):
         bnb_4bit_quant_type="nf4",
     ),
     torch_dtype=torch.bfloat16)
-     # set model embedding length
+
+    # set model embedding length
     model.resize_token_embeddings(len(tokenizer))
 
     # add LoRA adapters to model
     model = prepare_model_for_kbit_training(model)
-    #for name, param in model.named_parameters():
-     #   print(name)
     
     lora_config = LoraConfig(
                 r=args.rank_lora, 
@@ -93,5 +121,10 @@ def load_qloramodel(model_name, tokenizer, args):
     model.config.use_cache = False
     model.print_trainable_parameters()
     print_trainable_parameters(model)
+  
+    print('Model size in MB including buffers:', get_model_size(model)/1e+6)
+    print('Model size in GB including buffers:', get_model_size(model)/1e+9) 
+    #print('datatype of model loaded:', print_param_dtype(model))
+    
 
     return model

@@ -209,7 +209,8 @@ def main(args):
     total_t0 = time.time()
 
     training_stats = []
-    
+
+    print(f"gpu used {torch.cuda.max_memory_allocated(device=None)/1e+9} GB of memory")
     for epoch in range(last_epoch +1, args.epochs+1): 
         print(f'Beginning epoch {epoch} of {args.epochs}')
         
@@ -259,7 +260,7 @@ def main(args):
                                     top_p=args.top_p, 
                                     num_return_sequences=1
                                 )
-                for i, sample_output in enumerate(sample_outputs):
+                for _, sample_output in enumerate(sample_outputs):
                     print(f'Example ouput: {tokenizer.decode(sample_output, skip_special_tokens=True)}')
                 print()
 
@@ -269,6 +270,7 @@ def main(args):
             loss.backward()
             optimizer.step()
             scheduler.step()
+            print(f"gpu used {torch.cuda.max_memory_allocated(device=None)/1e+9} GB of memory")
     
 
         
