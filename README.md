@@ -38,4 +38,4 @@ To fine-tune a model (in this case GPT-2 medium) using QLoRA:
 
 LoRA parameters can be changed using the following flags:
 
- ``` --rank_lora int, --alpha_lora int , --targets_lora 'c_attn'  'c_proj' ```
+ ``` --rank_lora int, --alpha_lora int , --targets_lora 'c_attn' 'c_proj' ```

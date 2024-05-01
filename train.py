@@ -52,7 +52,7 @@ def get_args():
     #QLORA config arguments
     parser.add_argument('--rank_lora', default=64, type=int, help='rank of lo rank matrices in LORA')
     parser.add_argument('--alpha_lora', default=16, type=int, help='alpha scaling parameter in LORA')
-    parser.add_argument('--targets_lora', default ='c_attn', type=str, nargs='+', help='list of modules to apply adapters to for LORA')
+    parser.add_argument('--targets_lora', default =['c_attn'], type=str, nargs='+', help='list of modules to apply adapters to for LORA')
 
     #Optimization arguments
     parser.add_argument('--warmup-steps', default=1e2, type=float, help='number of warm up steps for learing rate scheduler')
@@ -270,7 +270,7 @@ def main(args):
             loss.backward()
             optimizer.step()
             scheduler.step()
-            print(f"gpu used {torch.cuda.max_memory_allocated(device=None)/1e+9} GB of memory")
+        print(f"gpu used {torch.cuda.max_memory_allocated(device=None)/1e+9} GB of memory")
     
 
         
