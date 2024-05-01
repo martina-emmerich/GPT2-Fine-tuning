@@ -63,7 +63,7 @@ def get_args():
 
     #Saving and loading checkpoint arguments
     parser.add_argument('--check-dir', default='Checkpoints', help='path to directory to save checkpoints')
-    parser.add_argument('--restore-file', type=str, help='filename/directory name to load checkpoint') #change name this is not the right one
+    parser.add_argument('--restore-file', type=str, help='name of the folder inside the checpoints folder which indicates the epoh checkpoint you want to load') 
     parser.add_argument('--save-interval', type=int, default=1, help='save a checkpoint every N epochs')
     parser.add_argument('--load-checkpoint', default=False, type=bool, help='whether to load the model from checkpoint')
 
