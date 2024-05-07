@@ -11,7 +11,7 @@ def format_time(elapsed):
 
 def save_model(output_dir, model, tokenizer, args =None, optimizer = None, epoch=None, val_loss=None, lr_scheduler=None,checkpoint=False):
     os.makedirs(output_dir, exist_ok=True)
-    #save model state dictionary with all infomration needed to continue training from the checkpoint
+    #save model state dictionary with all information needed to continue training from the checkpoint
     if checkpoint: 
         state_dict = {
         'epoch': epoch,
