@@ -22,9 +22,13 @@ def save_model(output_dir, model, tokenizer, args =None, optimizer = None, epoch
         'lr_scheduler': lr_scheduler.state_dict()
         }
         torch.save(state_dict, os.path.join(output_dir, 'state_dict'))
-        model.save_pretrained(output_dir)
         tokenizer.save_pretrained(output_dir)
-        model.config.to_json_file(os.path.join(output_dir, "config.json"))
+        if args.qlora:
+            merged_model = model.merge_and_unload()
+            merged_model.save_pretrained(output_dir) 
+        else:
+            merged_model.save_pretrained(output_dir)
+        #model.config.to_json_file(os.path.join(output_dir, "config.json"))
     else:    
         #save last model and tokenizer 
         model.save_pretrained(output_dir)
