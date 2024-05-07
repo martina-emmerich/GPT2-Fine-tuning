@@ -23,6 +23,8 @@ def save_model(output_dir, model, tokenizer, args =None, optimizer = None, epoch
         }
         torch.save(state_dict, os.path.join(output_dir, 'state_dict'))
         tokenizer.save_pretrained(output_dir)
+
+        #Save model merged with the LoRA weights if training with QLoRa
         if args.qlora:
             merged_model = model.merge_and_unload()
             merged_model.save_pretrained(output_dir) 
