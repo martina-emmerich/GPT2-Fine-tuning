@@ -1,20 +1,20 @@
-import pandas as pd
+#import pandas as pd
 import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
+#import seaborn as sns
+#import matplotlib.pyplot as plt
 import pickle
 import random
 import time
-import datetime
+#import datetime
 import os
-import logging
+#import logging
 import argparse
 from tqdm import tqdm
 
 
 from transformers import GPT2TokenizerFast, GPT2LMHeadModel, GPT2Config, AdamW, get_linear_schedule_with_warmup, set_seed,  BitsAndBytesConfig
 
-from peft import LoraConfig
+#from peft import LoraConfig
 
 import torch
 from torch.utils.tensorboard import SummaryWriter
@@ -266,7 +266,7 @@ def main(args):
 
                 model.train()
 
-            writer.add_scalar("Loss/train", loss, epoch)
+            writer.add_scalar("Loss/train", loss, step)
             loss.backward()
             optimizer.step()
             scheduler.step()

@@ -24,6 +24,7 @@ def save_model(output_dir, model, tokenizer, args =None, optimizer = None, epoch
         torch.save(state_dict, os.path.join(output_dir, 'state_dict'))
         model.save_pretrained(output_dir)
         tokenizer.save_pretrained(output_dir)
+        model.config.to_json_file(os.path.join(output_dir, "config.json"))
     else:    
         #save last model and tokenizer 
         model.save_pretrained(output_dir)
