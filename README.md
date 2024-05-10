@@ -1,6 +1,6 @@
 # GPT2-Fine-tuning
 
-Fine-tuning GPT-2 model to produce outputs in Jane Austen's writing style. Used Jane Asuten dataset from Kaggle: https://www.kaggle.com/datasets/joshmcadams/jane-austin-and-charles-dickens 
+Fine-tuning GPT-2 model to produce outputs in Jane Austen's writing style. Used Jane Asuten dataset from Kaggle: https://www.kaggle.com/datasets/joshmcadams/jane-austin-and-charles-dickens. The training data was around 11K short paragrpahs and validation was 1K short paragraphs (90%-10% split).
 
 Model output samples after fine-tuning on the Jane Austen dataset:
 Generation settings used for both models: 
