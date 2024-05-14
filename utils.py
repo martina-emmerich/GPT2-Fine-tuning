@@ -21,20 +21,18 @@ def save_model(output_dir, model, tokenizer, args =None, optimizer = None, epoch
         'args': args,
         'lr_scheduler': lr_scheduler.state_dict()
         }
+        
+        #Save model and toknenizer
         torch.save(state_dict, os.path.join(output_dir, 'state_dict'))
         tokenizer.save_pretrained(output_dir)
-
-        #Save model merged with the LoRA weights if training with QLoRa
-        if args.qlora:
-            merged_model = model.merge_and_unload()
-            merged_model.save_pretrained(output_dir) 
-        else:
-            merged_model.save_pretrained(output_dir)
-        #model.config.to_json_file(os.path.join(output_dir, "config.json"))
+        model.save_pretrained(output_dir)
+        model.config.to_json_file(os.path.join(output_dir, "config.json"))
+        
     else:    
         #save last model and tokenizer 
         model.save_pretrained(output_dir)
         tokenizer.save_pretrained(output_dir)
+        model.config.to_json_file(os.path.join(output_dir, "config.json"))
 
 def load_checkpoint(path, model, optimizer, scheduler): 
     #load checkpoint information and model to continue training 

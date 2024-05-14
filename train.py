@@ -227,7 +227,8 @@ def main(args):
             b_input_ids = batch[0].to(DEVICE)
             b_labels = batch[0].to(DEVICE)
             b_masks = batch[1].to(DEVICE)
-
+            
+            #zero out the gradients from the previous batch
             model.zero_grad()
             
             outputs = model(b_input_ids,
