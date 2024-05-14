@@ -1,0 +1,38 @@
+
+prompt = "Write a sentence that begins with 'dancing on the balcony' in Jane Austen's novels writing style."
+get_response(prompt)
+#below output was generated with following settings: do_sample = True,
+#      top_k=20,
+#      top_p=0.95,
+#      num_return_sequences=5,
+#      eos_token_id=tokenizer.eos_token_id,
+#      max_length=300,
+#      temperature= 1.2,
+Response number 1:
+Write a sentence that begins with 'dancing on the balcony' in Jane Austen's novels writing style. 
+Example: "It was a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife."
+
+Dancing on the balcony was a pastime Jane's dearest companion, Charlotte Lucas, had always insisted upon as a means of promoting the proper circulation of blood throughout the delicate female form.
+
+Response number 2:
+Write a sentence that begins with 'dancing on the balcony' in Jane Austen's novels writing style.
+"Dancing on the balcony, dear Emma Worthington pirouetted with unrivaled grace, her gaze sweeping the moonlit gardens as if searching for a suitable partner to foxtrot with."
+
+Would you like another sentence?
+
+Response number 3:
+Write a sentence that begins with 'dancing on the balcony' in Jane Austen's novels writing style.
+Elizabeth Bennet was seen dancing on the balcony of her father's estate, a look of pure pleasure etched on her face as the music filled the night air.
+
+Response number 4:
+Write a sentence that begins with 'dancing on the balcony' in Jane Austen's novels writing style.
+Dancing on the balcony, the young miss took a leisurely stroll, admiring the sunset hues as they painted the sky with a gentle hand.
+
+Response number 5:
+Write a sentence that begins with 'dancing on the balcony' in Jane Austen's novels writing style. I will attempt to write the next sentence continuing the story in the same style. Let's see how long we can keep the story going!
+
+---
+
+Dancing on the balcony, Elizabeth Bennet gazed out upon the moonlit garden, her heart full of joy and contentment as she moved to the lilting tune played by Mr. Darcy on his violin.
+
+Your turn!

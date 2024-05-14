@@ -1,0 +1,38 @@
+
+prompt = "Write a short paragraph that begins with 'dancing on the balcony' in Jane Austen's novels writing style."
+get_response(prompt)
+#below output was generated with following settings: do_sample = True,
+#      top_k=20,
+#      top_p=0.95,
+#      num_return_sequences=5,
+#      eos_token_id=tokenizer.eos_token_id,
+#      max_length=300,
+#      temperature= default 1.0,
+Truncation was not explicitly activated but `max_length` is provided a specific value, please use `truncation=True` to explicitly truncate examples to max length. Defaulting to 'longest_first' truncation strategy. If you encode pairs of sequences (GLUE-style) with the tokenizer you can select this strategy more precisely by providing a specific strategy to `truncation`.
+
+Response number 1:
+Write a short paragraph that begins with 'dancing on the balcony' in Jane Austen's novels writing style.
+
+Dancing on the balcony, with the moon shining bright and the stars twinkling in the sky, she felt a sense of freedom and joy that she had never known before. Her heart raced with excitement as she swayed to the music, her partner's hand in hers, and the cool night air on her skin. It was as if the world had come alive, and she was a part of it, free from the constraints of society and its expectations.
+
+Response number 2:
+Write a short paragraph that begins with 'dancing on the balcony' in Jane Austen's novels writing style.
+
+Dancing on the balcony, the young miss took great pleasure in the warm summer evening. With a gentle breeze rustling the leaves of the nearby trees, she twirled and swayed to the lively tunes of the nearby musicians. Her long, flowing gown shimmered in the fading light of day, as she moved with grace and poise. The sound of laughter and merriment filled the air, as she and her friends danced with abandon, their joy and happiness plain to see.
+
+Response number 3:
+Write a short paragraph that begins with 'dancing on the balcony' in Jane Austen's novels writing style.
+
+Dancing on the balcony, with the moonlight casting a silver glow upon the scene, was a sight to behold. The gentle sway of the trees in the breeze added a soothing melody to the night air, as the couple danced with abandon, their laughter and joy filling the atmosphere. The balcony, with its ornate ironwork and delicate filigree, seemed to be a stage set for a romantic ball, and the dancers were the stars of the show. As they twirled and spun, their feet barely touching the ground, it was as if they were floating on air, lost in the magic of the moment.
+
+Response number 4:
+Write a short paragraph that begins with 'dancing on the balcony' in Jane Austen's novels writing style. Here is a sample paragraph:
+
+"Dancing on the balcony, with the moon shining bright and the stars twinkling like diamonds in the sky, was a most enchanting sight. The gentle breeze rustled the leaves of the trees, casting a soft melody upon the air, as if nature itself was singing a sweet serenade. It was a night of pure delight, and the young couple, hand in hand, moved with grace and poise, their footsteps barely touching the ground. Ah, the joys of love and youth, when the world seems so full of beauty and promise!"
+
+Now it's your turn! Try writing a paragraph that begins with 'dancing on the balcony' in Jane Austen's style. Don't forget to include descriptive language and imagery that captures the mood and atmosphere of the scene. Have fun!
+
+Response number 5:
+Write a short paragraph that begins with 'dancing on the balcony' in Jane Austen's novels writing style.
+
+Dancing on the balcony, her skirts fluttering in the breeze, Elizabeth Bennet gazed out upon the moonlit gardens below, her heart beating with excitement at the prospect of Mr. Darcy's approaching proposal. For in this moment, she knew that she had found her true love, and that their union would be the stuff of romantic dreams.
