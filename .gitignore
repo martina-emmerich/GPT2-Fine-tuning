@@ -174,3 +174,5 @@ output_logs/
 bestmodel_run_fasttokenizer_gpt2/
 utils_gpu_usage_implementation.py
 old_readme.md
+inference_v1.py
+.vscode/
