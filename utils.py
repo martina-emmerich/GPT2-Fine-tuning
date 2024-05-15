@@ -27,7 +27,7 @@ def save_model(output_dir, model, tokenizer, args =None, optimizer = None, epoch
         tokenizer.save_pretrained(output_dir)
         model.save_pretrained(output_dir)
         model.config.to_json_file(os.path.join(output_dir, "config.json"))
-        
+
     else:    
         #save last model and tokenizer 
         model.save_pretrained(output_dir)
@@ -54,7 +54,7 @@ def load_basemodel(model_name, device, tokenizer):
     model = GPT2LMHeadModel.from_pretrained(model_name, config=config)
     #set model embedding length
     model.resize_token_embeddings(len(tokenizer))
-
+    model.config.use_cache = False
     #running the model on GPU
     model = model.to(device)
     
