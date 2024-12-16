@@ -16,8 +16,8 @@ Generation settings used for both models:
                                 model.generate( 
                                 do_sample=True,   
                                 top_k=50, 
-                                max_length = 300, #300
-                                top_p=0.95, #0.95 
+                                max_length = 300, 
+                                top_p=0.95, 
                                 num_return_sequences=3)
                                  ```
 
